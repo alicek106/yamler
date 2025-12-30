@@ -89,6 +89,12 @@ function App() {
       return
     }
 
+    // Validate URL format
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+      setError('Please enter a valid URL (must start with http:// or https://)')
+      return
+    }
+
     setLoading(true)
     setError('')
 
@@ -186,7 +192,7 @@ function App() {
           </div>
         )}
 
-        {yamlContent && !error && (
+        {yamlEntries.length > 0 && !error && (
           <div className="success-message">
             YAML loaded successfully ({yamlEntries.length} entries found)
           </div>
